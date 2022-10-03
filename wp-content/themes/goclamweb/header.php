@@ -56,7 +56,15 @@
                         <div class="col-xs-12">
                             <div class="d-flex justify-end">
                                 <div class="logo mr-auto">
-                                    <a href="index.html"><img src="assets/img/logo.png" alt="Cultura" /></a>
+                                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="Cultura" /></a> -->
+                                    <?php
+
+                                        if (is_home()) {
+                                            printf('<h1><a style="font-size: 24px; color:#6d6d6d;" href="%1$s   ">%2$s</a></h1>', esc_url( home_url()), get_bloginfo('sitename'));
+                                        } else {
+                                            printf('<p><a style="font-size: 24px; color:#6d6d6d;" href="%1$s   ">%2$s</a></p>', esc_url( home_url()), get_bloginfo('sitename'));
+                                        }
+                                    ?>
                                 </div>
                                 <!-- Static navbar -->
                                 <nav class="mainmenu">
@@ -68,7 +76,17 @@
                                         </button>
                                     </div>
                                     <div id="navbar" class="navbar-collapse collapse no-padding">
-                                        <ul class="navbar-nav dropdown">
+                                        <?php
+                                            if (has_nav_menu( 'glw_primary_menu' )) {
+                                                wp_nav_menu( array(
+                                                        'theme_location' => 'glw_primary_menu',
+                                                        'container'      => false,
+                                                        'fallback_cb'    => false,
+                                                        'depth'          => 5,
+                                                ) );
+                                            }
+                                        ?>
+                                        <!-- <ul class="navbar-nav dropdown">
                                             <li>
                                                 <a href="javascript:viod(0)" class="dropdown-toggle" data-toggle="dropdown" title="Click Here">
                                                     Home <i class="zmdi zmdi-chevron-down"></i>
@@ -127,7 +145,7 @@
                                                 </ul>
                                             </li>
                                             <li><a href="contact-us.html">Contact</a></li>
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                     <!--/.nav-collapse -->
                                 </nav>
