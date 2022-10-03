@@ -2769,7 +2769,10 @@ function trailingslashit( $string ) {
  * @return string String without the trailing slashes.
  */
 function untrailingslashit( $string ) {
-	return rtrim( $string, '/\\' );
+	if ($string != null) {
+		return rtrim( $string, '/\\' );
+	}
+
 }
 
 /**
